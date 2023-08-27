@@ -159,7 +159,7 @@ export class History {
             }
         }
         const move = this.validateMove(notation, previous, sloppy)
-	if (previous == start) previous = null;
+	if (previous == 'start') previous = null;
         if (!move) {
             throw new Error("invalid move")
         }

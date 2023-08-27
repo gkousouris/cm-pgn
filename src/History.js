@@ -138,6 +138,7 @@ export class History {
             }
         }
         const chess = new Chess(this.setUpFen ? this.setUpFen : undefined)
+	if (previous == 'start') previous = null;
         if (previous) {
             const historyToMove = this.historyToMove(previous)
             for (const moveInHistory of historyToMove) {
@@ -152,12 +153,21 @@ export class History {
     }
 
     addMove(notation, previous = null, sloppy = true) {
+        if (previous == 'start' && this.moves.length > 0) {
+            const move = this.validateMove(notation, previous, sloppy)
+            this.moves[0].variations.push([])
+            move.variation = this.moves[0].variations[this.moves[0].variations.length-1]
+            move.ply = 1
+            move.variation.push(move)
+            return move;
+        } 
         if (!previous) {
             if (this.moves.length > 0) {
                 previous = this.moves[this.moves.length - 1]
             }
         }
         const move = this.validateMove(notation, previous, sloppy)
+	    if (previous == 'start') previous = null;
         if (!move) {
             throw new Error("invalid move")
         }
@@ -227,3 +237,5 @@ export class History {
     }
 
 }
+
+

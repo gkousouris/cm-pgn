@@ -1,5 +1,7 @@
 # cm-pgn
 
+Supplying `'start'` to `addMove` allows the first move to have a variation 
+
 ## Parser for PGNs (Portable Game Notation)
 
 This is as **ES6 Module for parsing and rendering of PGNs** ([Portable Game Notation](https://de.wikipedia.org/wiki/Portable_Game_Notation)).

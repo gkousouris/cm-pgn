@@ -138,6 +138,7 @@ export class History {
             }
         }
         const chess = new Chess(this.setUpFen ? this.setUpFen : undefined)
+	if (previous == 'start') previous = null;
         if (previous) {
             const historyToMove = this.historyToMove(previous)
             for (const moveInHistory of historyToMove) {
@@ -158,6 +159,7 @@ export class History {
             }
         }
         const move = this.validateMove(notation, previous, sloppy)
+	if (previous == 'start') previous = null;
         if (!move) {
             throw new Error("invalid move")
         }

@@ -132,6 +132,7 @@ export class History {
      * @returns {[]|{}}
      */
     validateMove(notation, previous = null, sloppy = true) {
+	if (previous == start) previous = null;
         if (!previous) {
             if (this.moves.length > 0) {
                 previous = this.moves[this.moves.length - 1]
@@ -158,6 +159,7 @@ export class History {
             }
         }
         const move = this.validateMove(notation, previous, sloppy)
+	if (previous == start) previous = null;
         if (!move) {
             throw new Error("invalid move")
         }
